@@ -23,11 +23,11 @@ loop:
 static inline void one_chip_pico_program_init(PIO pio, uint sm, uint offset, uint pin) {
     pio_sm_config c = one_chip_pico_program_get_default_config(offset);
     
-    sm_config_set_in_pins(&c, pin+8);
-    pio_sm_set_consecutive_pindirs(pio, sm, pin+8, 19, false);
+    sm_config_set_in_pins(&c, pin);
+    pio_sm_set_consecutive_pindirs(pio, sm, pin, 15, false);
 
-    sm_config_set_out_pins(&c, pin, 8);
-    pio_sm_set_consecutive_pindirs(pio, sm, pin, 8, true);
+    sm_config_set_out_pins(&c, pin+15, 8);
+    pio_sm_set_consecutive_pindirs(pio, sm, pin+15, 8, true);
 
     for (int g = 0; g < 28; g++) {
         if (g >= 23 && g <= 25) 

@@ -17,10 +17,10 @@ void core1_main() {
     while(1) {
         uint16_t pointer = pio_sm_get_blocking(pio, sm);
         //uint8_t data = prg_data[pointer];
-
+        
         // printf("Addr %X Data %X\n", pointer, data);
-      
-        //pio_sm_put(pio, sm, data);
+        
+        //pio_sm_put(pio, sm, data);*/
 
         // are we shaving cycles here?
         pio_sm_put(pio, sm, prg_data[pointer]);
@@ -30,7 +30,7 @@ void core1_main() {
 
 
 int main(void){
-    set_sys_clock_khz(266000, true);
+    set_sys_clock_khz(270000, true);
     stdio_init_all();
 
     // if clock works and pico will be ready, turn on LED
