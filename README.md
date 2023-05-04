@@ -1,6 +1,8 @@
 # one_chip_pico
 A Famicom cartridge running on a Raspberry Pi Pico
 
+The v2 (main) cart has address pins from GPIO pins 0 - 14 on the Pico, data pins from 15 - 22 with the ROMSEL on pin 26.
+
 This is the program driving the custom cartridge seen in https://forums.nesdev.org/viewtopic.php?p=287730&sid=39f16afe21ae319c02cf7025c29bdbed#p287730
 
 It is heavily derived from the PicoCart64 project.
