@@ -1,5 +1,7 @@
 .program one_chip_pico
 
+wait 0 gpio 26
+
 loop:
 ; listen on the ROMCE pin
     wait 1 gpio 26
