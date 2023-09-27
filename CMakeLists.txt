@@ -23,6 +23,8 @@ pico_generate_pio_header(one_chip_pico
         ${CMAKE_CURRENT_LIST_DIR}/one_chip_pico.pio
         )
 
+pico_set_binary_type (one_chip_pico no_flash)
+
 # enabling serial output will definitely cause the cart to not work properly
 # but you may get some useful debugging information
 #pico_enable_stdio_usb(one_chip_pico 1)
