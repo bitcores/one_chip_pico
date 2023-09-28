@@ -19,7 +19,7 @@ def splitinput():
 
 inp = readinput()
 
-start = "const uint8_t prg_data[] = {"
+start = "uint8_t prg_data[] = {"
 f = open("prg_data.h", "w")
 f.write(start)
 first = True
