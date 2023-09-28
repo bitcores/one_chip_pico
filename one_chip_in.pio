@@ -1,0 +1,54 @@
+.program one_chip_in
+
+wait 1 gpio 28
+
+inloop:
+; listen on the ROMCE/M2 pin
+    wait 0 gpio 28 [31]
+    nop [25]
+
+; if R/W is high, it is a read
+    jmp pin inread
+    wait 1 gpio 28 [30]
+
+; read ALL the pins, first 15 will be address, next 8 data, 3 are skipped, then
+; ROMCE, R/W and M2
+    in pins, 29
+    push
+
+    jmp inloop
+
+
+inread:
+    ; read ALL the pins, first 15 will be address, next 8 data, 3 are skipped, then
+; ROMCE, R/W and M2
+    in pins, 29
+    push
+
+    wait 1 gpio 28
+    jmp inloop
+    
+
+
+% c-sdk {
+static inline void one_chip_in_program_init(PIO pio, uint sm, uint offset, uint pin) {
+    pio_sm_config c = one_chip_in_program_get_default_config(offset);
+    
+    sm_config_set_in_pins(&c, pin);
+    pio_sm_set_consecutive_pindirs(pio, sm, pin, 29, false);
+
+    for (int g = 0; g < 29; g++) {
+        if (g >= 23 && g <= 25) 
+            continue;
+        pio_gpio_init(pio, g);
+    }
+
+    sm_config_set_in_shift(&c, false, false, 32);
+
+    sm_config_set_jmp_pin(&c, 27);
+
+    pio_sm_init(pio, sm, offset, &c);
+    pio_sm_set_enabled(pio, sm, true);
+}
+
+%}

@@ -20,7 +20,10 @@ target_link_libraries(one_chip_pico
         )
 
 pico_generate_pio_header(one_chip_pico
-        ${CMAKE_CURRENT_LIST_DIR}/one_chip_pico.pio
+        ${CMAKE_CURRENT_LIST_DIR}/one_chip_in.pio
+        )
+pico_generate_pio_header(one_chip_pico
+        ${CMAKE_CURRENT_LIST_DIR}/one_chip_out.pio
         )
 
 pico_set_binary_type (one_chip_pico no_flash)

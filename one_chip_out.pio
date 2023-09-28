@@ -1,0 +1,40 @@
+.program one_chip_out
+
+.wrap_target
+; set data pins as input to avoid bus conflict
+    mov osr, null
+    out pindirs, 8
+
+; wait until data comes and out it on the out pins
+    pull
+    out pins, 8
+
+    ; set data pins as output
+    mov osr, ~null
+    out pindirs, 8
+    
+; wait until m2 falls, and delay 10 cycles
+    wait 0 gpio 28 [10]
+.wrap
+
+
+% c-sdk {
+static inline void one_chip_out_program_init(PIO pio, uint sm, uint offset, uint pin) {
+    pio_sm_config c = one_chip_out_program_get_default_config(offset);
+
+    sm_config_set_out_pins(&c, pin, 8);
+    pio_sm_set_consecutive_pindirs(pio, sm, pin, 8, true);
+
+    for (int g = 15; g < 29; g++) {
+        if (g >= 23 && g <= 28) 
+            continue;
+        pio_gpio_init(pio, g);
+    }
+
+    sm_config_set_out_shift(&c, true, false, 32);
+
+    pio_sm_init(pio, sm, offset, &c);
+    pio_sm_set_enabled(pio, sm, true);
+}
+
+%}
