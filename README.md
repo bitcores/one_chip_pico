@@ -15,3 +15,5 @@ As this is a PRG only solution, with no CHR-ROM present and using half the namet
 
 ![](images/v2+wfront.JPG)
 ![](images/v2+wback.JPG)
+
+When tapping slot contacts directly, the console pins will ride up on the wires which can cause dodgy connections if the wires are too thick. I squashed mine flat to help mitigate this, also make sure there are no loose strands of wire that could short to nearby pads.
