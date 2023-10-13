@@ -6,8 +6,6 @@ project(one_chip_pico)
 
 pico_sdk_init()
 
-set(PICO_COPY_TO_RAM 1)
-
 add_executable(one_chip_pico
         one_chip_pico.c
         )
@@ -15,7 +13,6 @@ add_executable(one_chip_pico
 # pull in common dependencies
 target_link_libraries(one_chip_pico 
         pico_stdlib
-        pico_multicore
         hardware_pio
         )
 
@@ -26,7 +23,11 @@ pico_generate_pio_header(one_chip_pico
         ${CMAKE_CURRENT_LIST_DIR}/one_chip_out.pio
         )
 
-pico_set_binary_type (one_chip_pico no_flash)
+# change binary type to no_flash to disable the Pico
+# flash storage and instead run completely from RAM
+# this is needed if you want to use the prg_ram.h file
+#pico_set_binary_type (one_chip_pico no_flash)
+pico_set_binary_type (one_chip_pico copy_to_ram)
 
 # enabling serial output will definitely cause the cart to not work properly
 # but you may get some useful debugging information

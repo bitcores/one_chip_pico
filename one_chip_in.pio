@@ -9,6 +9,7 @@ inloop:
 
 ; if R/W is high, it is a read
     jmp pin inread
+; its a write, so wait for m2 high to read data
     wait 1 gpio 28 [30]
 
 ; read ALL the pins, first 15 will be address, next 8 data, 3 are skipped, then
