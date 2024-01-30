@@ -29,3 +29,21 @@ When tapping slot contacts directly, the console pins will ride up on the wires 
  This cart is compatible with the v2 builds, but prg_data.h files generated with the const tag won't compile with this build (just remove the const).
 
  Presumably this can be adapted to an NES cartridge, so long as the cartridge retains the CIC chip. Note the difference in pin assignments between the Famicom and NES, here is a pinout sheet https://www.benheck.com/Downloads/NES_Famicom_Pinouts.pdf
+
+### Custom PCB Option
+A custom fabrication PCB option is now available. 
+![](pcb/pcb-front.JPG)
+Color choice is up to you (green and purple were the same price at the time) and here are the specifications used
+```
+2 layers
+1.2mm PCB thickness
+Tented vias (no difference?)
+ENIG Surface Finish (the most expensive option but definitely the best looking)
+Gold Fingers 1U" (for the cartridge connector)
+30 degree chamfered (for the cartridge connector)
+```
+Has pins to support the SparkFun Logic Level Converter boards and the cheaper batch LLC boards you can get on Aliexpress or Amazon. 2k/3k resistors are marked, but 2.2k/3.3k can also be used (aiming for the 3V sweet spot from a 5V source). Nametable select can be done with pins and a jumper, or soldering bridge between the pads.
+
+![](pcb/build-front.JPG)
+![](pcb/build-back.JPG)
+
