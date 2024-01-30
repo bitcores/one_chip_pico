@@ -1,11 +1,14 @@
 #include "pico/stdlib.h"
 #include "hardware/gpio.h"
-//#include "hardware/vreg.h"
 
 #include "one_chip_in.pio.h"
 #include "one_chip_out.pio.h"
 #include "prg_data.h"
+//#include "prg_cmp.h"
 //#include "prg_ram.h"
+
+// set up empty 32kB for prg_data. comment if using prg_data.h
+//uint8_t prg_data[32768];
 
 // set up an empty 8kB for prg_ram. comment if using prg_ram.h
 uint8_t prg_ram[8192];
@@ -13,6 +16,37 @@ uint8_t prg_ram[8192];
 int main(void){
     //vreg_set_voltage(VREG_VOLTAGE_1_15);
     set_sys_clock_khz(270000, true);
+
+    // unpack the prg data from the prg_cmp
+    // uncomment this block if using prg_cmp.h
+    /*int y = 0;
+    int i = 0;
+    bool tictoc = true;
+
+    while (i < sizeof(prg_cmp)-1) {
+        uint8_t t = prg_cmp[i];
+        uint8_t b = prg_cmp[i+1];
+        uint8_t v = 0;
+        uint8_t cnt = 0;
+        
+        if (tictoc) {
+            v = t;
+            cnt = b >> 4;
+            i += 1;
+        } else {
+            v = (t & 15) << 4;
+            v += b >> 4;
+            cnt = b & 15;
+            i += 2;
+        }
+
+        for (int c = 0; c < cnt+1; c++){
+            prg_data[y] = v;
+            y++;
+        }
+
+        tictoc = !tictoc;
+    }*/
 
     // if clock works and pico will be ready, turn on LED
     const uint LED_PIN = PICO_DEFAULT_LED_PIN;
