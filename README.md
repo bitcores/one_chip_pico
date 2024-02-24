@@ -2,6 +2,7 @@
 
 ### Overview
 A Famicom cartridge running on a Raspberry Pi Pico, heavily derived from the PicoCart64 project.
+__This cart should only be used in official consoles. Use in Famicom clones may damage the Pico. Full 5v -> 3.3v conversion should be implemented if you want to use in a Famicom clone.__
 
 This is the program driving the custom cartridge seen in https://forums.nesdev.org/viewtopic.php?p=287730&sid=39f16afe21ae319c02cf7025c29bdbed#p287730
 
@@ -42,7 +43,7 @@ ENIG Surface Finish (the most expensive option but definitely the best looking)
 Gold Fingers 1U" (for the cartridge connector)
 30 degree chamfered (for the cartridge connector)
 ```
-Has pins to support the SparkFun Logic Level Converter boards and the cheaper batch LLC boards you can get on Aliexpress or Amazon. 2k/3k resistors are marked, but 2.2k/3.3k can also be used (aiming for the 3V sweet spot from a 5V source). Nametable select can be done with pins and a jumper, or soldering bridge between the pads.
+Has pins to support the SparkFun Logic Level Converter boards and the cheaper batch LLC boards you can get on Aliexpress or Amazon. 2k/3k resistors are marked, but 2.2k/3.3k can also be used (aiming for the 3V sweet spot from a 5V source), or 220/330, or even 100/200. Nametable select can be done with pins and a jumper, or soldering bridge between the pads.
 
 ![](pcb/build-front.JPG)
 ![](pcb/build-back.JPG)
